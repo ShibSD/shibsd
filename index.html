@@ -2,87 +2,211 @@
 <html>
 <head>
     <title>Shib Sankar Debnath</title>
+
     <style>
         body {
             margin: 0;
             height: 100vh;
+            overflow: hidden;
             display: flex;
             justify-content: center;
             align-items: center;
-            background: #0a0f1f;
+            background: radial-gradient(circle at top, #0b1224, #020617);
             color: white;
             font-family: Arial, sans-serif;
         }
 
+        /* ================= FALLING SHOOTING STARS ================= */
+
+        .stars {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            overflow: hidden;
+            z-index: 0;
+        }
+
+        .star {
+            position: absolute;
+            top: -120px;
+            width: 2px;
+            height: 70px;
+            background: linear-gradient(to bottom, white, transparent);
+            opacity: 0.9;
+            transform: rotate(180deg);
+            animation: fallStraight linear infinite;
+        }
+
+        @keyframes fallStraight {
+            from {
+                transform: translate(0, -120px) rotate(180deg);
+                opacity: 1;
+            }
+            to {
+                transform: translate(0, 120vh) rotate(180deg);
+                opacity: 0;
+            }
+        }
+
+        .star:nth-child(1)  { left: 5%;  animation-duration: 3s; }
+        .star:nth-child(2)  { left: 15%; animation-duration: 3.8s; }
+        .star:nth-child(3)  { left: 25%; animation-duration: 2.9s; }
+        .star:nth-child(4)  { left: 35%; animation-duration: 3.4s; }
+        .star:nth-child(5)  { left: 45%; animation-duration: 4.1s; }
+        .star:nth-child(6)  { left: 55%; animation-duration: 3.2s; }
+        .star:nth-child(7)  { left: 65%; animation-duration: 2.7s; }
+        .star:nth-child(8)  { left: 75%; animation-duration: 3.6s; }
+        .star:nth-child(9)  { left: 85%; animation-duration: 4.4s; }
+        .star:nth-child(10) { left: 95%; animation-duration: 3.1s; }
+
+        /* ================= CONTENT ================= */
+
         .box {
             text-align: center;
+            z-index: 2;
         }
+
+        /* ---------- PROFILE IMAGE ---------- */
+
+        .profile-pic {
+            width: 140px;
+            height: 140px;
+            border-radius: 50%;
+            object-fit: cover;
+            margin-bottom: 15px;
+            opacity: 0;
+            animation: fadePic 1.5s ease forwards;
+            box-shadow:
+                0 0 15px rgba(147,197,253,0.8),
+                0 0 30px rgba(147,197,253,0.6),
+                0 0 45px rgba(147,197,253,0.4);
+        }
+
+        @keyframes fadePic {
+            from { opacity: 0; transform: scale(0.9); }
+            to   { opacity: 1; transform: scale(1); }
+        }
+
+        /* ---------- NAME ---------- */
 
         h1 {
             font-size: 40px;
             opacity: 0;
-            animation: slideFade 1.5s forwards;
+            animation: slideFade 1.4s ease-out forwards;
+            animation-delay: 1s;
         }
 
         p {
-            margin-top: 10px;
+            margin-top: 12px;
             font-size: 18px;
             opacity: 0;
-            animation: fade 1s forwards;
-            animation-delay: 1.5s;
+            animation: fadeUp 1s ease forwards;
+            animation-delay: 1.8s;
         }
+
+        /* ---------- LINKS ---------- */
 
         .links {
             margin-top: 25px;
-            opacity: 0;
-            animation: fade 1s forwards;
-            animation-delay: 2.3s;
+            display: flex;
+            justify-content: center;
+            gap: 15px;
         }
 
         .links a {
-            display: inline-block;
-            margin: 0 10px;
-            padding: 10px 14px;
+            padding: 10px 16px;
             border: 1px solid white;
             color: white;
             text-decoration: none;
+            opacity: 0;
+            transform: translateY(20px);
+            animation: popIn 0.8s ease forwards;
         }
 
-        .contact {
-            margin-top: 25px;
-            opacity: 0;
-            animation: fade 1s forwards;
-            animation-delay: 3s;
+        .links a:nth-child(1) { animation-delay: 2.4s; }
+        .links a:nth-child(2) { animation-delay: 2.7s; }
+        .links a:nth-child(3) { animation-delay: 3s; }
+
+        .links a:hover {
+            background: white;
+            color: #020617;
         }
+
+        /* ---------- CONTACT ---------- */
+
+        .contact {
+            margin-top: 30px;
+            font-size: 16px;
+            opacity: 0;
+            transform: translateY(20px);
+            animation: popIn 1s ease forwards;
+            animation-delay: 3.4s;
+        }
+
+        .contact a {
+            color: #93c5fd;
+            text-decoration: none;
+        }
+
+        .contact a:hover {
+            text-decoration: underline;
+        }
+
+        /* ================= ANIMATIONS ================= */
 
         @keyframes slideFade {
             from { opacity: 0; transform: translateY(40px); }
             to   { opacity: 1; transform: translateY(0); }
         }
 
-        @keyframes fade {
-            from { opacity: 0; }
-            to   { opacity: 1; }
+        @keyframes fadeUp {
+            from { opacity: 0; transform: translateY(20px); }
+            to   { opacity: 1; transform: translateY(0); }
+        }
+
+        @keyframes popIn {
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
         }
     </style>
 </head>
 
 <body>
 
+<!-- FALLING STARS -->
+<div class="stars">
+    <div class="star"></div><div class="star"></div><div class="star"></div>
+    <div class="star"></div><div class="star"></div><div class="star"></div>
+    <div class="star"></div><div class="star"></div><div class="star"></div>
+    <div class="star"></div>
+</div>
+
+<!-- CONTENT -->
 <div class="box">
+
+    <!-- CHANGE IMAGE FILE NAME HERE -->
+    <img src="WhatsApp Image 2025-08-27 at 00.43.55_55eae2f7.jpg" alt="Shib Sankar Debnath" class="profile-pic">
+
     <h1>SHIB SANKAR DEBNATH</h1>
+
     <p>Site Under Construction</p>
 
     <div class="links">
-        <!-- Put your real links later -->
-        <a href="https://www.instagram.com/theshibsd/">Instagram</a>
-        <a href="https://www.youtube.com/@theshibsd">YouTube</a>
-        <a href="https://www.linkedin.com/in/shibsd/">LinkedIn</a>
+        <a href="https://www.instagram.com/theshibsd/" target="_blank">Instagram</a>
+        <a href="https://www.youtube.com/@theshibsd" target="_blank">YouTube</a>
+        <a href="https://www.linkedin.com/in/shibsd/" target="_blank">LinkedIn</a>
     </div>
 
     <div class="contact">
-        Contact: <a href="mailto:shibsankardebnath56@gmail.com" style="color:white;">
-        shibsankardebnath56@gmail.com</a>
+        Contact:
+        <a href="mailto:shibsankardebnath56@gmail.com" target="_blank">
+            shibsankardebnath56@gmail.com
+        </a>
     </div>
 </div>
 
