@@ -2,7 +2,6 @@
 <html>
 <head>
     <title>Shib Sankar Debnath</title>
-
     <style>
         body {
             margin: 0;
@@ -16,19 +15,13 @@
             font-family: Arial, sans-serif;
         }
 
-        /* ================= FALLING SHOOTING STARS ================= */
-
+        /* ================= FALLING STARS ================= */
         .stars {
             position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
+            inset: 0;
             pointer-events: none;
-            overflow: hidden;
             z-index: 0;
         }
-
         .star {
             position: absolute;
             top: -120px;
@@ -39,16 +32,9 @@
             transform: rotate(180deg);
             animation: fallStraight linear infinite;
         }
-
         @keyframes fallStraight {
-            from {
-                transform: translate(0, -120px) rotate(180deg);
-                opacity: 1;
-            }
-            to {
-                transform: translate(0, 120vh) rotate(180deg);
-                opacity: 0;
-            }
+            from { transform: translateY(-120px) rotate(180deg); opacity: 1; }
+            to   { transform: translateY(120vh) rotate(180deg); opacity: 0; }
         }
 
         .star:nth-child(1)  { left: 5%;  animation-duration: 3s; }
@@ -63,26 +49,32 @@
         .star:nth-child(10) { left: 95%; animation-duration: 3.1s; }
 
         /* ================= CONTENT ================= */
-
         .box {
             text-align: center;
             z-index: 2;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
         }
 
         /* ---------- PROFILE IMAGE ---------- */
-
         .profile-pic {
             width: 140px;
             height: 140px;
             border-radius: 50%;
             object-fit: cover;
-            margin-bottom: 15px;
+            margin-bottom: 18px;
             opacity: 0;
             animation: fadePic 1.5s ease forwards;
+            transition: transform 0.5s cubic-bezier(.15,.9,.3,1),
+                        box-shadow 0.5s ease;
+        }
+        .profile-pic:hover {
+            transform: scale(1.5);
             box-shadow:
-                0 0 15px rgba(147,197,253,0.8),
-                0 0 30px rgba(147,197,253,0.6),
-                0 0 45px rgba(147,197,253,0.4);
+                0 0 25px rgba(147,197,253,1),
+                0 0 50px rgba(147,197,253,0.9),
+                0 0 75px rgba(147,197,253,0.7);
         }
 
         @keyframes fadePic {
@@ -91,16 +83,25 @@
         }
 
         /* ---------- NAME ---------- */
-
         h1 {
             font-size: 40px;
+            margin: 0;
             opacity: 0;
             animation: slideFade 1.4s ease-out forwards;
             animation-delay: 1s;
+
+            transition: transform 0.35s ease, text-shadow 0.35s ease;
+        }
+        h1:hover {
+            transform: scale(1.2);
+            text-shadow:
+                0 0 12px rgba(147,197,253,1),
+                0 0 25px rgba(147,197,253,0.8);
         }
 
+        /* ---------- TEXT ---------- */
         p {
-            margin-top: 12px;
+            margin: 14px 0 0;
             font-size: 18px;
             opacity: 0;
             animation: fadeUp 1s ease forwards;
@@ -108,14 +109,12 @@
         }
 
         /* ---------- LINKS ---------- */
-
         .links {
             margin-top: 25px;
             display: flex;
             justify-content: center;
             gap: 15px;
         }
-
         .links a {
             padding: 10px 16px;
             border: 1px solid white;
@@ -124,8 +123,11 @@
             opacity: 0;
             transform: translateY(20px);
             animation: popIn 0.8s ease forwards;
+            transition: transform 0.45s cubic-bezier(.15,.9,.3,1),
+                        box-shadow 0.45s ease,
+                        background 0.3s ease,
+                        color 0.3s ease;
         }
-
         .links a:nth-child(1) { animation-delay: 2.4s; }
         .links a:nth-child(2) { animation-delay: 2.7s; }
         .links a:nth-child(3) { animation-delay: 3s; }
@@ -133,52 +135,70 @@
         .links a:hover {
             background: white;
             color: #020617;
+            transform: scale(1.4);
+            box-shadow:
+                0 0 18px rgba(147,197,253,1),
+                0 0 36px rgba(147,197,253,0.8),
+                0 0 60px rgba(147,197,253,0.6);
         }
 
         /* ---------- CONTACT ---------- */
-
         .contact {
-            margin-top: 30px;
+            margin-top: 32px;
             font-size: 16px;
             opacity: 0;
             transform: translateY(20px);
             animation: popIn 1s ease forwards;
             animation-delay: 3.4s;
+
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            position: relative;
+
+            transition: transform 0.35s ease, text-shadow 0.35s ease;
         }
 
-        .contact a {
+        .contact:hover {
+            transform: scale(1.2);
+            text-shadow:
+                0 0 10px rgba(147,197,253,0.9),
+                0 0 20px rgba(147,197,253,0.7);
+        }
+
+        .copy-email {
             color: #93c5fd;
-            text-decoration: none;
-        }
-
-        .contact a:hover {
+            cursor: pointer;
             text-decoration: underline;
         }
 
-        /* ================= ANIMATIONS ================= */
+        #copyMsg {
+            position: absolute;
+            top: 26px;
+            left: 50%;
+            transform: translateX(-50%);
+            font-size: 14px;
+            color: #22c55e;
+            opacity: 0;
+            transition: opacity 0.4s ease;
+        }
 
+        /* ================= ANIMATIONS ================= */
         @keyframes slideFade {
             from { opacity: 0; transform: translateY(40px); }
             to   { opacity: 1; transform: translateY(0); }
         }
-
         @keyframes fadeUp {
             from { opacity: 0; transform: translateY(20px); }
             to   { opacity: 1; transform: translateY(0); }
         }
-
         @keyframes popIn {
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
+            to { opacity: 1; transform: translateY(0); }
         }
     </style>
 </head>
-
 <body>
 
-<!-- FALLING STARS -->
 <div class="stars">
     <div class="star"></div><div class="star"></div><div class="star"></div>
     <div class="star"></div><div class="star"></div><div class="star"></div>
@@ -186,15 +206,14 @@
     <div class="star"></div>
 </div>
 
-<!-- CONTENT -->
 <div class="box">
-
-    <!-- CHANGE IMAGE FILE NAME HERE -->
-    <img src="WhatsApp Image 2025-08-27 at 00.43.55_55eae2f7.jpg" alt="Shib Sankar Debnath" class="profile-pic">
+    <img src="WhatsApp Image 2025-08-27 at 00.43.55_55eae2f7.jpg"
+         alt="Shib Sankar Debnath"
+         class="profile-pic">
 
     <h1>SHIB SANKAR DEBNATH</h1>
 
-    <p>Site Under Construction</p>
+    <p>FIND ME ON:</p>
 
     <div class="links">
         <a href="https://www.instagram.com/theshibsd/" target="_blank">Instagram</a>
@@ -203,12 +222,28 @@
     </div>
 
     <div class="contact">
-        Contact:
-        <a href="mailto:shibsankardebnath56@gmail.com" target="_blank">
+        <span>Contact:</span>
+        <span id="emailCopy" class="copy-email">
             shibsankardebnath56@gmail.com
-        </a>
+        </span>
+        <span id="copyMsg">Copied!</span>
     </div>
 </div>
+
+<script>
+    const emailText = "shibsankardebnath56@gmail.com";
+    const emailEl = document.getElementById("emailCopy");
+    const msgEl = document.getElementById("copyMsg");
+
+    emailEl.addEventListener("click", () => {
+        navigator.clipboard.writeText(emailText).then(() => {
+            msgEl.style.opacity = "1";
+            setTimeout(() => {
+                msgEl.style.opacity = "0";
+            }, 1500);
+        });
+    });
+</script>
 
 </body>
 </html>
