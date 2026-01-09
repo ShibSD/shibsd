@@ -1,218 +1,289 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-    <title>Shib Sankar Debnath</title>
-    <style>
-        body {
-            margin: 0;
-            height: 100vh;
-            overflow: hidden;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            background: radial-gradient(circle at top, #0b1224, #020617);
-            color: white;
-            font-family: Arial, sans-serif;
-        }
+<meta charset="UTF-8">
+<title>Shib Sankar Debnath</title>
 
-        /* ================= FALLING STARS ================= */
-        .stars {
-            position: fixed;
-            inset: 0;
-            pointer-events: none;
-            z-index: 0;
-        }
-        .star {
-            position: absolute;
-            top: -120px;
-            width: 2px;
-            height: 70px;
-            background: linear-gradient(to bottom, white, transparent);
-            opacity: 0.9;
-            transform: rotate(180deg);
-            animation: fallStraight linear infinite;
-        }
-        @keyframes fallStraight {
-            from { transform: translateY(-120px) rotate(180deg); opacity: 1; }
-            to   { transform: translateY(120vh) rotate(180deg); opacity: 0; }
-        }
+<!-- Cursive font for ALL text -->
+<link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@400&display=swap" rel="stylesheet">
 
-        .star:nth-child(1)  { left: 5%;  animation-duration: 3s; }
-        .star:nth-child(2)  { left: 15%; animation-duration: 3.8s; }
-        .star:nth-child(3)  { left: 25%; animation-duration: 2.9s; }
-        .star:nth-child(4)  { left: 35%; animation-duration: 3.4s; }
-        .star:nth-child(5)  { left: 45%; animation-duration: 4.1s; }
-        .star:nth-child(6)  { left: 55%; animation-duration: 3.2s; }
-        .star:nth-child(7)  { left: 65%; animation-duration: 2.7s; }
-        .star:nth-child(8)  { left: 75%; animation-duration: 3.6s; }
-        .star:nth-child(9)  { left: 85%; animation-duration: 4.4s; }
-        .star:nth-child(10) { left: 95%; animation-duration: 3.1s; }
+<style>
+/* ================= GLOBAL ================= */
+body{
+    margin:0;
+    height:100vh;
+    overflow:hidden;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    background:radial-gradient(circle at top,#0b1224,#020617);
+    color:white;
+    font-family:'Dancing Script', cursive;
+}
 
-        /* ================= CONTENT ================= */
-        .box {
-            text-align: center;
-            z-index: 2;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-        }
+/* ================= FALLING STARS ================= */
+.stars{
+    position:fixed;
+    inset:0;
+    pointer-events:none;
+    z-index:0;
+}
+.star{
+    position:absolute;
+    top:-120px;
+    width:2px;
+    height:70px;
 
-        /* ---------- PROFILE IMAGE ---------- */
-        .profile-pic {
-            width: 140px;
-            height: 140px;
-            border-radius: 50%;
-            object-fit: cover;
-            margin-bottom: 18px;
-            opacity: 0;
-            animation: fadePic 1.5s ease forwards;
-            transition: transform 0.5s cubic-bezier(.15,.9,.3,1),
-                        box-shadow 0.5s ease;
-        }
-        .profile-pic:hover {
-            transform: scale(1.5);
-            box-shadow:
-                0 0 25px rgba(147,197,253,1),
-                0 0 50px rgba(147,197,253,0.9),
-                0 0 75px rgba(147,197,253,0.7);
-        }
+    /* BRIGHTER PART AT BOTTOM → POINTS DOWN */
+    background:linear-gradient(to bottom, transparent, white);
 
-        @keyframes fadePic {
-            from { opacity: 0; transform: scale(0.9); }
-            to   { opacity: 1; transform: scale(1); }
-        }
+    opacity:.9;
+    animation:fallStraight linear infinite;
+}
+@keyframes fallStraight{
+    from{transform:translateY(-120px);opacity:1;}
+    to{transform:translateY(120vh);opacity:0;}
+}
+.star:nth-child(1){left:5%;animation-duration:3s;}
+.star:nth-child(2){left:15%;animation-duration:3.8s;}
+.star:nth-child(3){left:25%;animation-duration:2.9s;}
+.star:nth-child(4){left:35%;animation-duration:3.4s;}
+.star:nth-child(5){left:45%;animation-duration:4.1s;}
+.star:nth-child(6){left:55%;animation-duration:3.2s;}
+.star:nth-child(7){left:65%;animation-duration:2.7s;}
+.star:nth-child(8){left:75%;animation-duration:3.6s;}
+.star:nth-child(9){left:85%;animation-duration:4.4s;}
+.star:nth-child(10){left:95%;animation-duration:3.1s;}
 
-        /* ---------- NAME ---------- */
-        h1 {
-            font-size: 40px;
-            margin: 0;
-            opacity: 0;
-            animation: slideFade 1.4s ease-out forwards;
-            animation-delay: 1s;
+/* ================= CONTENT ================= */
+.box{
+    text-align:center;
+    z-index:2;
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+}
 
-            transition: transform 0.35s ease, text-shadow 0.35s ease;
-        }
-        h1:hover {
-            transform: scale(1.2);
-            text-shadow:
-                0 0 12px rgba(147,197,253,1),
-                0 0 25px rgba(147,197,253,0.8);
-        }
+/* -------- IMAGE + TEXT -------- */
+.pic-wrap{
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+}
 
-        /* ---------- TEXT ---------- */
-        p {
-            margin: 14px 0 0;
-            font-size: 18px;
-            opacity: 0;
-            animation: fadeUp 1s ease forwards;
-            animation-delay: 1.8s;
-        }
+/* TEXT ABOVE CIRCLE */
+.overlay-text{
+    margin-bottom:10px;
+    font-size:34px;
+    font-style:italic;
+    font-weight:300;
+    color:#e5ecff;
+    opacity:0;
+    animation:fadeText 1.5s ease forwards;
+    animation-delay:.6s;
+    transition:text-shadow .35s ease, transform .35s ease;
+}
+.overlay-text:hover{
+    text-shadow:
+      0 0 10px rgba(147,197,253,.9),
+      0 0 22px rgba(147,197,253,.7);
+    transform:scale(1.1);
+}
 
-        /* ---------- LINKS ---------- */
-        .links {
-            margin-top: 25px;
-            display: flex;
-            justify-content: center;
-            gap: 15px;
-        }
-        .links a {
-            padding: 10px 16px;
-            border: 1px solid white;
-            color: white;
-            text-decoration: none;
-            opacity: 0;
-            transform: translateY(20px);
-            animation: popIn 0.8s ease forwards;
-            transition: transform 0.45s cubic-bezier(.15,.9,.3,1),
-                        box-shadow 0.45s ease,
-                        background 0.3s ease,
-                        color 0.3s ease;
-        }
-        .links a:nth-child(1) { animation-delay: 2.4s; }
-        .links a:nth-child(2) { animation-delay: 2.7s; }
-        .links a:nth-child(3) { animation-delay: 3s; }
+/* PROFILE IMAGE */
+.profile-pic{
+    width:140px;
+    height:140px;
+    border-radius:50%;
+    object-fit:cover;
+    margin-bottom:18px;
+    opacity:0;
+    animation:fadePic 1.5s ease forwards;
+    transition:transform .5s cubic-bezier(.15,.9,.3,1),
+               box-shadow .5s ease;
+}
+.profile-pic:hover{
+    transform:scale(1.5);
+    box-shadow:
+      0 0 25px rgba(147,197,253,1),
+      0 0 50px rgba(147,197,253,.9),
+      0 0 75px rgba(147,197,253,.7);
+}
 
-        .links a:hover {
-            background: white;
-            color: #020617;
-            transform: scale(1.4);
-            box-shadow:
-                0 0 18px rgba(147,197,253,1),
-                0 0 36px rgba(147,197,253,0.8),
-                0 0 60px rgba(147,197,253,0.6);
-        }
+@keyframes fadePic{
+    from{opacity:0;transform:scale(.9);}
+    to{opacity:1;transform:scale(1);}
+}
+@keyframes fadeText{
+    from{opacity:0;transform:translateY(-6px);}
+    to{opacity:1;transform:translateY(0);}
+}
 
-        /* ---------- CONTACT ---------- */
-        .contact {
-            margin-top: 32px;
-            font-size: 16px;
-            opacity: 0;
-            transform: translateY(20px);
-            animation: popIn 1s ease forwards;
-            animation-delay: 3.4s;
+/* NAME */
+h1{
+    font-size:48px;
+    margin:0;
+    font-style:italic;
+    font-weight:400;
+    letter-spacing:1px;
+    opacity:0;
+    animation:slideFade 1.4s ease-out forwards;
+    animation-delay:1s;
+    transition:transform .35s ease,text-shadow .35s ease;
+}
+h1:hover{
+    transform:scale(1.2);
+    text-shadow:
+      0 0 12px rgba(147,197,253,1),
+      0 0 25px rgba(147,197,253,.8);
+}
 
-            display: flex;
-            align-items: center;
-            gap: 10px;
-            position: relative;
+/* TEXT */
+p{
+    margin:14px 0 0;
+    font-size:22px;
+    opacity:0;
+    animation:fadeUp 1s ease forwards;
+    animation-delay:1.8s;
+    transition:text-shadow .35s ease;
+}
+p:hover{
+    text-shadow:
+      0 0 10px rgba(147,197,253,.9),
+      0 0 18px rgba(147,197,253,.7);
+}
 
-            transition: transform 0.35s ease, text-shadow 0.35s ease;
-        }
+/* LINKS */
+.links{
+    margin-top:25px;
+    display:flex;
+    gap:15px;
+}
+.links a{
+    padding:10px 18px;
+    border:1px solid white;
+    color:white;
+    text-decoration:none;
+    font-size:22px;
+    opacity:0;
+    transform:translateY(20px);
+    animation:popIn .8s ease forwards;
+    transition:transform .45s cubic-bezier(.15,.9,.3,1),
+               box-shadow .45s ease,
+               background .3s ease,
+               color .3s ease;
+}
+.links a:nth-child(1){animation-delay:2.4s;}
+.links a:nth-child(2){animation-delay:2.7s;}
+.links a:nth-child(3){animation-delay:3s;}
+.links a:hover{
+    background:white;
+    color:#020617;
+    transform:scale(1.4);
+    box-shadow:
+      0 0 18px rgba(147,197,253,1),
+      0 0 36px rgba(147,197,253,.8),
+      0 0 60px rgba(147,197,253,.6);
+}
 
-        .contact:hover {
-            transform: scale(1.2);
-            text-shadow:
-                0 0 10px rgba(147,197,253,0.9),
-                0 0 20px rgba(147,197,253,0.7);
-        }
+/* CONTACT */
+.contact{
+    margin-top:32px;
+    font-size:20px;
+    opacity:0;
+    transform:translateY(20px);
+    animation:popIn 1s ease forwards;
+    animation-delay:3.4s;
+    display:flex;
+    gap:10px;
+    position:relative;
+    transition:transform .35s ease,text-shadow .35s ease;
+}
+.contact:hover{
+    transform:scale(1.2);
+    text-shadow:
+      0 0 10px rgba(147,197,253,.9),
+      0 0 20px rgba(147,197,253,.7);
+}
+.copy-email{color:#93c5fd;cursor:pointer;text-decoration:underline;}
+#copyMsg{
+    position:absolute;
+    top:26px;
+    left:50%;
+    transform:translateX(-50%);
+    font-size:14px;
+    color:#22c55e;
+    opacity:0;
+    transition:opacity .4s ease;
+}
 
-        .copy-email {
-            color: #93c5fd;
-            cursor: pointer;
-            text-decoration: underline;
-        }
+/* ================= AUDIO CONTROLS ================= */
+.audio-controls{
+    position:fixed;
+    bottom:20px;
+    right:20px;
+    display:flex;
+    align-items:center;
+    gap:10px;
+    z-index:10;
+    background:rgba(2,6,23,.7);
+    padding:10px 14px;
+    border-radius:10px;
+    backdrop-filter:blur(6px);
+}
+.audio-btn{
+    cursor:pointer;
+    font-size:18px;
+    border:1px solid white;
+    padding:6px 10px;
+    border-radius:6px;
+    transition:transform .2s ease,box-shadow .2s ease;
+}
+.audio-btn:hover{
+    transform:scale(1.15);
+    box-shadow:0 0 10px rgba(147,197,253,.9);
+}
+.volume-slider{width:90px;}
 
-        #copyMsg {
-            position: absolute;
-            top: 26px;
-            left: 50%;
-            transform: translateX(-50%);
-            font-size: 14px;
-            color: #22c55e;
-            opacity: 0;
-            transition: opacity 0.4s ease;
-        }
-
-        /* ================= ANIMATIONS ================= */
-        @keyframes slideFade {
-            from { opacity: 0; transform: translateY(40px); }
-            to   { opacity: 1; transform: translateY(0); }
-        }
-        @keyframes fadeUp {
-            from { opacity: 0; transform: translateY(20px); }
-            to   { opacity: 1; transform: translateY(0); }
-        }
-        @keyframes popIn {
-            to { opacity: 1; transform: translateY(0); }
-        }
-    </style>
+/* ================= ANIMATIONS ================= */
+@keyframes slideFade{
+    from{opacity:0;transform:translateY(40px);}
+    to{opacity:1;transform:translateY(0);}
+}
+@keyframes fadeUp{
+    from{opacity:0;transform:translateY(20px);}
+    to{opacity:1;transform:translateY(0);}
+}
+@keyframes popIn{
+    to{opacity:1;transform:translateY(0);}
+}
+</style>
 </head>
+
 <body>
 
+<!-- ========= BACKGROUND MUSIC ========= -->
+<audio id="bgMusic" src="Night Pass.mp3" loop preload="auto"></audio>
+
+<!-- ========= STARS ========= -->
 <div class="stars">
-    <div class="star"></div><div class="star"></div><div class="star"></div>
-    <div class="star"></div><div class="star"></div><div class="star"></div>
-    <div class="star"></div><div class="star"></div><div class="star"></div>
-    <div class="star"></div>
+  <div class="star"></div><div class="star"></div><div class="star"></div>
+  <div class="star"></div><div class="star"></div><div class="star"></div>
+  <div class="star"></div><div class="star"></div><div class="star"></div>
+  <div class="star"></div>
 </div>
 
+<!-- ========= CONTENT ========= -->
 <div class="box">
-    <img src="WhatsApp Image 2025-08-27 at 00.43.55_55eae2f7.jpg"
-         alt="Shib Sankar Debnath"
-         class="profile-pic">
 
-    <h1>SHIB SANKAR DEBNATH</h1>
+    <div class="pic-wrap">
+        <span class="overlay-text">Hello, I am</span>
+        <img src="WhatsApp Image 2025-08-27 at 00.43.55_55eae2f7.jpg"
+             alt="Shib Sankar Debnath"
+             class="profile-pic">
+    </div>
 
+    <h1>Shib Sankar Debnath</h1>
     <p>FIND ME ON:</p>
 
     <div class="links">
@@ -230,19 +301,50 @@
     </div>
 </div>
 
-<script>
-    const emailText = "shibsankardebnath56@gmail.com";
-    const emailEl = document.getElementById("emailCopy");
-    const msgEl = document.getElementById("copyMsg");
+<!-- ========= AUDIO CONTROLS ========= -->
+<div class="audio-controls">
+    <div id="muteBtn" class="audio-btn">🔊</div>
+    <input id="volumeSlider" class="volume-slider"
+           type="range" min="0" max="1" step="0.01" value="0.5">
+</div>
 
-    emailEl.addEventListener("click", () => {
-        navigator.clipboard.writeText(emailText).then(() => {
-            msgEl.style.opacity = "1";
-            setTimeout(() => {
-                msgEl.style.opacity = "0";
-            }, 1500);
-        });
-    });
+<script>
+/* ---------- EMAIL COPY ---------- */
+const emailText="shibsankardebnath56@gmail.com";
+const emailEl=document.getElementById("emailCopy");
+const msgEl=document.getElementById("copyMsg");
+
+emailEl.addEventListener("click",()=>{
+  navigator.clipboard.writeText(emailText).then(()=>{
+    msgEl.style.opacity="1";
+    setTimeout(()=>msgEl.style.opacity="0",1500);
+  });
+});
+
+/* ---------- MUSIC CONTROL ---------- */
+const music=document.getElementById("bgMusic");
+const muteBtn=document.getElementById("muteBtn");
+const volumeSlider=document.getElementById("volumeSlider");
+
+music.volume=0.5;
+
+/* autoplay after first interaction */
+const startMusic=()=>{
+  if(music.paused) music.play().catch(()=>{});
+  document.removeEventListener("click",startMusic);
+};
+document.addEventListener("click",startMusic);
+
+muteBtn.addEventListener("click",()=>{
+  music.muted=!music.muted;
+  muteBtn.textContent=music.muted?"🔇":"🔊";
+});
+
+volumeSlider.addEventListener("input",e=>{
+  music.volume=e.target.value;
+  if(music.volume==0) muteBtn.textContent="🔇";
+  else if(!music.muted) muteBtn.textContent="🔊";
+});
 </script>
 
 </body>
